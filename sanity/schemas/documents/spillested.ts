@@ -1,32 +1,32 @@
-import { UserIcon } from "@sanity/icons";
-import { defineField, defineType } from "sanity";
+import { UserIcon } from '@sanity/icons';
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
-  name: "author",
-  title: "Author",
+  name: 'spillested',
+  title: 'Spillested',
   icon: UserIcon,
-  type: "document",
+  type: 'document',
   fields: [
     defineField({
-      name: "name",
-      title: "Name",
-      type: "string",
+      name: 'name',
+      title: 'Navn',
+      type: 'string',
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "picture",
-      title: "Picture",
-      type: "image",
+      name: 'bilde',
+      title: 'Bilde',
+      type: 'image',
       fields: [
         {
-          name: "alt",
-          type: "string",
-          title: "Alternative text",
-          description: "Important for SEO and accessiblity.",
+          name: 'alt',
+          type: 'string',
+          title: 'Alternativ tekst',
+          description: 'Viktig for SEO og tilgjengelighet.',
           validation: (rule) => {
             return rule.custom((alt, context) => {
               if ((context.document?.picture as any)?.asset?._ref && !alt) {
-                return "Required";
+                return 'Required';
               }
               return true;
             });
@@ -36,7 +36,7 @@ export default defineType({
       options: {
         hotspot: true,
         aiAssist: {
-          imageDescriptionField: "alt",
+          imageDescriptionField: 'alt',
         },
       },
       validation: (rule) => rule.required(),
